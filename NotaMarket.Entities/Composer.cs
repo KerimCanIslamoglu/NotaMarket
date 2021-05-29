@@ -10,11 +10,15 @@ namespace NotaMarket.Entities
     {
         public int Id { get; set; }
         public string ComposerName { get; set; }
+        public string PhotoUrl { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime? DeathDate { get; set; }
         public string Biography { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public bool IsActive { get; set; }
+
+        public ICollection<SheetMusic> SheetMusic { get; set; }
+
     }
 }

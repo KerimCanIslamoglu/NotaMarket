@@ -24,11 +24,20 @@ namespace NotaMarket.DataAccess.Context
                    .HasOne(e => e.InstrumentType)
                    .WithMany(c => c.Instruments);
 
+            modelBuilder.Entity<SheetMusic>()
+                  .HasOne(e => e.Composer)
+                  .WithMany(c => c.SheetMusic);
+
+            modelBuilder.Entity<SheetMusic>()
+                  .HasOne(e => e.Instruments)
+                  .WithMany(c => c.SheetMusic);
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Instrument> Instruments { get; set; }
         public DbSet<InstrumentType> InstrumentTypes { get; set; }
         public DbSet<Composer> Composers { get; set; }
+        public DbSet<SheetMusic> SheetMusics { get; set; }
     }
 }

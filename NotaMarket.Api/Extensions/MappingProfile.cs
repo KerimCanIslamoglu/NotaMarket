@@ -24,6 +24,16 @@ namespace NotaMarket.Api.Extensions
 
             CreateMap<Composer, ComposerModel>().ReverseMap();
 
+            CreateMap<SheetMusic, CreateSheetMusicModel>()
+                .ReverseMap();
+
+
+            CreateMap<SheetMusicModel, SheetMusic>()
+                .ReverseMap()
+                  .ForMember(x => x.ComposerName, s => s.MapFrom(a => a.Composer.ComposerName))
+                  .ForMember(x => x.InstrumentName, s => s.MapFrom(a => a.Instruments.InstrumentName));
+
+
         }
     }
 }

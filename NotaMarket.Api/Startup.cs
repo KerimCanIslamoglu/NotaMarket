@@ -89,11 +89,13 @@ namespace NotaMarket.Api
             services.AddScoped<IInstrumentDal, InstrumentDal>();
             services.AddScoped<IInstrumentTypeDal, InstrumentTypeDal>();
             services.AddScoped<IComposerDal, ComposerDal>();
+            services.AddScoped<ISheetMusicDal, SheetMusicDal>();
 
 
             services.AddScoped<IInstrumentService, InstrumentManager>();
             services.AddScoped<IInstrumentTypeService, InstrumentTypeManager>();
             services.AddScoped<IComposerService, ComposerManager>();
+            services.AddScoped<ISheetMusicService, SheetMusicManager>();
 
             services.AddAuthentication(options =>
             {
@@ -133,7 +135,7 @@ namespace NotaMarket.Api
                             StatusCode=400,
                             Message = errors,
                             Response=null
-                        }); ;
+                        });
                     };
                 })
                 .AddFluentValidation(fv => {
@@ -143,6 +145,7 @@ namespace NotaMarket.Api
             services.AddTransient<IValidator<CreateInstrumentModel>, InstrumentValidator>();
             services.AddTransient<IValidator<CreateInstrumentTypeModel>, InstrumentTypeValidator>();
             services.AddTransient<IValidator<ComposerModel>, ComposerValidator>();
+            services.AddTransient<IValidator<CreateSheetMusicModel>, SheetMusicValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

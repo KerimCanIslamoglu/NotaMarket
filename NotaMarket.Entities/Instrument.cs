@@ -13,5 +13,7 @@ namespace NotaMarket.Entities
 
         public int InstrumentTypeId { get; set; }
         public InstrumentType InstrumentType { get; set; }
+        public ICollection<SheetMusic> SheetMusic { get; set; }
+
     }
 }
