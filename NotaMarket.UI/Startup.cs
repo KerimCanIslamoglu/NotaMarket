@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NotaMarket.UI.Abstract;
+using NotaMarket.UI.ApiHelper;
+using NotaMarket.UI.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +27,10 @@ namespace NotaMarket.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped(typeof(IRestApiGenerator<>), typeof(RestApiGenerator<>));
+
+            services.AddScoped<IInstrumentBusiness, InstrumentBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NotaMarket.UI.ApiHelper
 {
-    public interface IRestApiGenerator<T>
+    public interface IRestApiGenerator<T> where T : class
     {
         Task<T> GetApi(T returnObject, string url);
         Task<T> PostApi(T returnObject, T jsonContent, string url);

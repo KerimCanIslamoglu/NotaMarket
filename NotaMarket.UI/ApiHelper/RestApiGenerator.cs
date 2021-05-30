@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NotaMarket.UI.ApiHelper
 {
-    public class RestApiGenerator<T> : IRestApiGenerator<T>
+    public class RestApiGenerator<T> : IRestApiGenerator<T> where T : class
     {
 
         public async Task<T> GetApi(T returnObject, string url)
