@@ -9,7 +9,7 @@ namespace NotaMarket.Api.Model
     {
         public int Id { get; set; }
         public string InstrumentTypeName { get; set; }
-
+        public string PhotoUrl { get; set; }
         public ICollection<InstrumentModel> Instruments { get; set; }
     }
 }

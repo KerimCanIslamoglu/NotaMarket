@@ -14,6 +14,11 @@ namespace NotaMarket.Entities
         public string SheetUrl { get; set; }
         public bool IsActive { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+        public string ModifiedBy { get; set; }
+
         public int ComposerId { get; set; }
         public Composer Composer { get; set; }
 

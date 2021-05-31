@@ -14,6 +14,7 @@ namespace NotaMarket.Api.Validation
         {
             RuleFor(instrument => instrument.InstrumentName).NotEmpty().WithMessage("Enstürman adı alanı zorunludur.");
             RuleFor(instrument => instrument.InstrumentTypeId).NotNull().WithMessage("Enstürman tipi Id boş bırakılamaz.");
+            RuleFor(instrument => instrument.InstrumentTypeId).NotNull().WithMessage("Enstürman fotoğrafı boş bırakılamaz.");
             RuleFor(instrument => instrument.InstrumentTypeId).NotEqual(0).WithMessage("Geçerli bir enstürman tipi Id'si giriniz.");
         }   
     }

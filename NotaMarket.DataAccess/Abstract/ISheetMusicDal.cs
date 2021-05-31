@@ -10,5 +10,6 @@ namespace NotaMarket.DataAccess.Abstract
     public interface ISheetMusicDal : IRepositoryBase<SheetMusic>
     {
         List<SheetMusic> GetAllSheetMusic();
+        List<SheetMusic> GetLimitedSheetMusicOrdered(int count);
     }
 }

@@ -23,6 +23,11 @@ namespace NotaMarket.Business.Concrete
             _sheetMusicDal.Create(sheetMusic);
         }
 
+        public List<SheetMusic> GetLimitedSheetMusics(int count)
+        {
+            return _sheetMusicDal.GetLimitedSheetMusicOrdered(count);
+        }
+
         public List<SheetMusic> GetSheetMusics()
         {
             return _sheetMusicDal.GetAllSheetMusic();

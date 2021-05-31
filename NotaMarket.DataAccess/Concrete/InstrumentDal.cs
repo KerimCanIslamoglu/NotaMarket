@@ -23,5 +23,10 @@ namespace NotaMarket.DataAccess.Concrete
         {
             return _db.Instruments.Include(x => x.InstrumentType).ToList();
         }
+
+        public List<Instrument> GetLimitedInstrumentsWithType(int count)
+        {
+            return _db.Instruments.Include(x => x.InstrumentType).Take(count).ToList();
+        }
     }
 }

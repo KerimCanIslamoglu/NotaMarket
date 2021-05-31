@@ -10,5 +10,6 @@ namespace NotaMarket.DataAccess.Abstract
     public interface IInstrumentDal : IRepositoryBase<Instrument>
     {
         List<Instrument> GetInstrumentsWithType();
+        List<Instrument> GetLimitedInstrumentsWithType(int count);
     }
 }

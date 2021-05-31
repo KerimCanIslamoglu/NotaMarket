@@ -11,6 +11,7 @@ namespace NotaMarket.Entities
     {
         public int Id { get; set; }
         public string InstrumentTypeName { get; set; }
+        public string PhotoUrl { get; set; }
 
         public ICollection<Instrument> Instruments { get; set; }
     }

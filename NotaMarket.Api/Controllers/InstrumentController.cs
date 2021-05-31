@@ -58,5 +58,26 @@ namespace NotaMarket.Api.Controllers
             });
 
         }
+
+        [HttpGet]
+        [Route("api/[controller]/GetLimitedInstruments/{count}")]
+        public IActionResult GetLimitedInstruments(int count)
+        {
+            var instruments = _instrumentService
+                .GetLimitedInstruments(count)
+                .Select(_mapper.Map<Instrument, InstrumentModel>)
+                .ToList();
+
+
+
+            return Ok(new ResponseListModel<InstrumentModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = "Başarılı",
+                Response = instruments
+            });
+
+        }
     }
 }

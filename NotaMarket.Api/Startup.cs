@@ -121,6 +121,12 @@ namespace NotaMarket.Api
 
 
             services.AddMvc()
+                .AddJsonOptions(i=> 
+                {
+                    i.JsonSerializerOptions.PropertyNamingPolicy = null;
+                    i.JsonSerializerOptions.DictionaryKeyPolicy = null;
+                    i.JsonSerializerOptions.WriteIndented = true;
+                })
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.InvalidModelStateResponseFactory = c =>

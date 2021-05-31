@@ -27,5 +27,10 @@ namespace NotaMarket.Business.Concrete
         {
             return _instrumentDal.GetInstrumentsWithType();
         }
+
+        public List<Instrument> GetLimitedInstruments(int count)
+        {
+            return _instrumentDal.GetLimitedInstrumentsWithType(count);
+        }
     }
 }

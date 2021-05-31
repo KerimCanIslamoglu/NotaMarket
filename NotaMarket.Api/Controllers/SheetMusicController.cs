@@ -56,5 +56,24 @@ namespace NotaMarket.Api.Controllers
             });
 
         }
+
+        [HttpGet]
+        [Route("api/[controller]/GetLimitedSheetMusics/{count}")]
+        public IActionResult GetLimitedSheetMusics(int count)
+        {
+            var sheetMusics = _sheetMusicService
+                .GetLimitedSheetMusics(count)
+                .Select(_mapper.Map<SheetMusic, SheetMusicModel>)
+                .ToList();
+
+            return Ok(new ResponseListModel<SheetMusicModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = "Başarılı",
+                Response = sheetMusics
+            });
+
+        }
     }
 }

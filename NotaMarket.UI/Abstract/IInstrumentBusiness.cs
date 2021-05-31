@@ -9,6 +9,7 @@ namespace NotaMarket.UI.Abstract
 {
     public interface IInstrumentBusiness
     {
-        Task<ResponseListModel<List<InstrumentModel>>> GetInstrumentsFromApi();
+        Task<ResponseListModel<InstrumentModel>> GetInstrumentsFromApi();
+        Task<ResponseListModel<InstrumentModel>> GetHomePageInstrumentsFromApi(int count);
     }
 }

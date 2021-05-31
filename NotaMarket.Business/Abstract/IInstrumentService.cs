@@ -10,6 +10,7 @@ namespace NotaMarket.Business.Abstract
     public interface IInstrumentService
     {
         List<Instrument> GetInstruments();
+        List<Instrument> GetLimitedInstruments(int count);
         void CreateInstrument(Instrument instrument);
     }
 }

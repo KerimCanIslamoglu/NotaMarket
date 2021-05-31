@@ -28,9 +28,18 @@ namespace NotaMarket.UI
         {
             services.AddControllersWithViews();
 
-            services.AddScoped(typeof(IRestApiGenerator<>), typeof(RestApiGenerator<>));
+            services.AddMvc()
+               .AddJsonOptions(i =>
+               {
+                   i.JsonSerializerOptions.PropertyNamingPolicy = null;
+                   i.JsonSerializerOptions.DictionaryKeyPolicy = null;
+                   i.JsonSerializerOptions.WriteIndented = true;
+               });
+
+            services.AddScoped<IRestApiGenerator,RestApiGenerator>();
 
             services.AddScoped<IInstrumentBusiness, InstrumentBusiness>();
+            services.AddScoped<ISheetMusicBusiness, SheetMusicBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

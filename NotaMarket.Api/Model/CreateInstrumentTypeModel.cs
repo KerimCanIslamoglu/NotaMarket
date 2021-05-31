@@ -8,5 +8,6 @@ namespace NotaMarket.Api.Model
     public class CreateInstrumentTypeModel
     {
         public string InstrumentTypeName { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

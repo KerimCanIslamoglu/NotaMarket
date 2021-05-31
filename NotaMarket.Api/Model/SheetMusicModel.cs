@@ -13,5 +13,9 @@ namespace NotaMarket.Api.Model
         public string SheetUrl { get; set; }
         public string ComposerName { get; set; }
         public string InstrumentName { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+        public string ModifiedBy { get; set; }
     }
 }

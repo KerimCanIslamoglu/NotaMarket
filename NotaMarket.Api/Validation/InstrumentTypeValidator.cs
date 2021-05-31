@@ -12,6 +12,7 @@ namespace NotaMarket.Api.Validation
         public InstrumentTypeValidator()
         {
             RuleFor(instrumentType => instrumentType.InstrumentTypeName).NotEmpty().WithMessage("Enstürman tipi adı alanı zorunludur.");
+            RuleFor(instrumentType => instrumentType.PhotoUrl).NotEmpty().WithMessage("Enstürman tipi fotoğrafı adı alanı zorunludur.");
 
         }
     }

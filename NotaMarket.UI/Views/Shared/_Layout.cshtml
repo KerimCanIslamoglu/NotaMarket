@@ -36,7 +36,7 @@
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
+                    <a asp-controller="Home" asp-action="Index" class="logo">
                         <img src="~/images/icons/logo-01.png" alt="IMG-LOGO">
                     </a>
 
@@ -44,10 +44,10 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="index.html">Anasayfa</a>
+                                <a asp-controller="Home" asp-action="Index">Anasayfa</a>
                             </li>
                             <li>
-                                <a href="product.html">Notalar</a>
+                                <a asp-controller="SheetMusic" asp-action="Index">Notalar</a>
                             </li>
                             <li>
                                 <a href="blog.html">Müzisyenler</a>

@@ -27,5 +27,16 @@ namespace NotaMarket.DataAccess.Concrete
                 .Include(x => x.Instruments)
                 .ToList();
         }
+
+        public List<SheetMusic> GetLimitedSheetMusicOrdered(int count)
+        {
+            return _db.SheetMusics
+               .Where(x => x.IsActive == true)
+               .Include(x => x.Composer)
+               .Include(x => x.Instruments)
+               .OrderByDescending(x=>x.CreatedAt)
+               .Take(count)
+               .ToList();
+        }
     }
 }

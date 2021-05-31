@@ -8,27 +8,24 @@ using System.Threading.Tasks;
 
 namespace NotaMarket.UI.ApiHelper
 {
-    public class RestApiGenerator<T> : IRestApiGenerator<T> where T : class
+    public class RestApiGenerator : IRestApiGenerator
     {
 
-        public async Task<T> GetApi(T returnObject, string url)
+        public async Task<T> GetApi<T>(string url)
         {
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(url))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        returnObject = JsonConvert.DeserializeObject<T>(apiResponse);
-                    }
+                        //string apiResponse = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+                    //returnObject = JsonConvert.DeserializeObject<T>(apiResponse);
                 }
             }
 
-            return returnObject;
         }
 
-        public async Task<T> PostApi(T returnObject, T jsonContent, string url)
+        public async Task<T> PostApi<T>( object jsonContent, string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -36,18 +33,15 @@ namespace NotaMarket.UI.ApiHelper
 
                 using (var response = await httpClient.PostAsync(url, content))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
+                   
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        returnObject = JsonConvert.DeserializeObject<T>(apiResponse);
-                    }
+                        return JsonConvert.DeserializeObject<T>(apiResponse);
                 }
             }
 
-            return returnObject;
         }
 
-        public async Task<T> PutApi(T returnObject, T jsonContent, string url)
+        public async Task<T> PutApi<T>( object jsonContent, string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -55,28 +49,24 @@ namespace NotaMarket.UI.ApiHelper
 
                 using (var response = await httpClient.PutAsync(url, content))
                 {
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
+                   
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        returnObject = JsonConvert.DeserializeObject<T>(apiResponse);
-                    }
+                        return JsonConvert.DeserializeObject<T>(apiResponse);
                 }
             }
 
-            return returnObject;
         }
-        public async Task<T> DeleteApi(T returnObject, string url)
+        public async Task<T> DeleteApi<T>(string url)
         {
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.DeleteAsync(url))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    returnObject = JsonConvert.DeserializeObject<T>(apiResponse);
+                    return JsonConvert.DeserializeObject<T>(apiResponse);
                 }
             }
 
-            return returnObject;
         }
 
     }
