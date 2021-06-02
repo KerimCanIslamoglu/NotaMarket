@@ -30,8 +30,8 @@ namespace NotaMarket.UI.Controllers
             model.InstrumentModels = new List<InstrumentModel>();
             model.SheetMusicModels = new List<SheetMusicModel>();
 
-            model.InstrumentModels.AddRange(instruments.Response);
-            model.SheetMusicModels.AddRange(sheetMusic.Response);
+            model.InstrumentModels.AddRange(instruments?.Response);
+            model.SheetMusicModels.AddRange(sheetMusic?.Response);
 
             return View(model);
         }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using NotaMarket.UI.Abstract;
 using NotaMarket.UI.ApiHelper;
 using NotaMarket.UI.Concrete;
+using NotaMarket.UI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace NotaMarket.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllersWithViews();
 
             services.AddMvc()
@@ -40,6 +42,7 @@ namespace NotaMarket.UI
 
             services.AddScoped<IInstrumentBusiness, InstrumentBusiness>();
             services.AddScoped<ISheetMusicBusiness, SheetMusicBusiness>();
+            services.AddScoped<IInstrumentTypeBusiness, InstrumentTypeBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +64,7 @@ namespace NotaMarket.UI
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
