@@ -1,4 +1,5 @@
-﻿using NotaMarket.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using NotaMarket.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace NotaMarket.Business.Abstract
     public interface IInstrumentTypeService
     {
         List<InstrumentType> GetInstrumentTypes();
-        void CreateInstrumentType(InstrumentType instrumentType);
+        void CreateInstrumentType(IFormFile file,InstrumentType instrumentType);
     }
 }

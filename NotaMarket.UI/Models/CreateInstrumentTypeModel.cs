@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace NotaMarket.UI.Models
 {
-    public class InstrumentTypeModel
+    public class CreateInstrumentTypeModel
     {
-        public int Id { get; set; }
         public string InstrumentTypeName { get; set; }
         public string PhotoUrl { get; set; }
         public byte[] Data { get; set; }
@@ -17,5 +17,6 @@ namespace NotaMarket.UI.Models
         public string Description { get; set; }
         public string UploadedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public IFormFile FormFile { get; set; }
     }
 }

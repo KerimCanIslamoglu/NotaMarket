@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NotaMarket.UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,24 @@ namespace NotaMarket.UI.ApiHelper
             }
 
         }
+        public async Task<T> PostApiWithFile<T>(object jsonContent, string url)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                StringContent strContent = new StringContent(JsonConvert.SerializeObject(jsonContent), Encoding.UTF8, "application/json");
+
+                var content = new MultipartFormDataContent();
+
+                content.Add(strContent);
+
+                using (var response = await httpClient.PostAsync(url, content))
+                {
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(apiResponse);
+                }
+            }
+        }
 
         public async Task<T> PutApi<T>( object jsonContent, string url)
         {
@@ -69,5 +88,6 @@ namespace NotaMarket.UI.ApiHelper
 
         }
 
+      
     }
 }

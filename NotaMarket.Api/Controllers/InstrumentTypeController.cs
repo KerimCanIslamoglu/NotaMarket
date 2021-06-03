@@ -39,17 +39,15 @@ namespace NotaMarket.Api.Controllers
                 Message = "Başarılı",
                 Response = instrumentTypes
             });
-
-
         }
 
         [HttpPost]
         [Route("api/[controller]/CreateInstrumentType")]
-        public IActionResult CreateInstrumentType(CreateInstrumentTypeModel CreateInstrumentTypeModel)
+        public IActionResult CreateInstrumentType([FromForm] CreateInstrumentTypeModel CreateInstrumentTypeModel)
         {
-            _instrumentTypeService.CreateInstrumentType(_mapper.Map<CreateInstrumentTypeModel, InstrumentType>(CreateInstrumentTypeModel));
+            _instrumentTypeService.CreateInstrumentType(CreateInstrumentTypeModel.FormFile,_mapper.Map<CreateInstrumentTypeModel, InstrumentType>(CreateInstrumentTypeModel));
 
-            return Ok(new ResponseObjectModel<InstrumentTypeModel>
+            return Ok(new ResponseObjectModel<CreateInstrumentTypeModel>
             {
                 Success = true,
                 StatusCode = 200,

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotaMarket.UI.Abstract;
 using NotaMarket.UI.Models;
@@ -32,16 +33,22 @@ namespace NotaMarket.UI.Controllers
 
             return View(model);
         }
-
-        public async Task<IActionResult> Create()
+        [HttpGet]
+        public IActionResult Create()
         {
-            //var model = new List<InstrumentTypeDto>();
-
-            //var instrumentType = await _instrumentTypeBusiness.GetInstrumentTypesFromApi();
-
-            //model = instrumentType?.Response.Select(_mapper.Map<InstrumentTypeModel, InstrumentTypeDto>).ToList();
-
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUpload(CreateInstrumentTypeModel createInstrumentTypeModel)
+        {
+            createInstrumentTypeModel.CreatedOn = DateTime.Now;
+            createInstrumentTypeModel.UploadedBy = "Admin";
+            createInstrumentTypeModel.Description = "Desc";
+          
+            var instrumentType = await _instrumentTypeBusiness.CreateInstrumentTypeFromApi(createInstrumentTypeModel);
+
+            return RedirectToAction("Index");
         }
     }
 }
