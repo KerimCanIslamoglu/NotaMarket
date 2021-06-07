@@ -6,6 +6,7 @@ using NotaMarket.UI.Models;
 using NotaMarket.UI.Models.Dtos;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,13 +41,39 @@ namespace NotaMarket.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUpload(CreateInstrumentTypeModel createInstrumentTypeModel)
+        public async Task<IActionResult> CreateUpload(CreateInstrumentTypeDto createInstrumentTypeDto)
         {
+            var fileName = Path.GetFileNameWithoutExtension(createInstrumentTypeDto.FormFile.FileName);
+            var extension = Path.GetExtension(createInstrumentTypeDto.FormFile.FileName);
+
+            var createInstrumentTypeModel = new CreateInstrumentTypeModel();
+
+            createInstrumentTypeModel.FileType = createInstrumentTypeDto.FormFile.ContentType;
+            createInstrumentTypeModel.Extension = extension;
+            createInstrumentTypeModel.FileName = fileName;
             createInstrumentTypeModel.CreatedOn = DateTime.Now;
             createInstrumentTypeModel.UploadedBy = "Admin";
             createInstrumentTypeModel.Description = "Desc";
-          
+            createInstrumentTypeModel.PhotoUrl = "TestUrl";
+            createInstrumentTypeModel.InstrumentTypeName = createInstrumentTypeDto.InstrumentTypeName;
+
+            using (var dataStream = new MemoryStream())
+            {
+                await createInstrumentTypeDto.FormFile.CopyToAsync(dataStream);
+                createInstrumentTypeModel.Data = dataStream.ToArray();
+            }
+
             var instrumentType = await _instrumentTypeBusiness.CreateInstrumentTypeFromApi(createInstrumentTypeModel);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteInstrumentType(InstrumentTypeDto instrumentTypeDto)
+        {
+
+            var instrumentType = await _instrumentTypeBusiness
+                .DeleteInstrumentTypeFromApi(_mapper.Map<InstrumentTypeDto, CreateInstrumentTypeModel>(instrumentTypeDto));
 
             return RedirectToAction("Index");
         }

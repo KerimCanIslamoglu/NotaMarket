@@ -54,8 +54,12 @@
                                     <td>@item.InstrumentTypeName</td>
                                     <td>@item.PhotoUrl</td>
                                     <td>
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Güncelle</a>
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" title="">Sil</a>
+                                        <button href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Güncelle</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" 
+                                           title="" 
+                                           asp-controller="AdminInstrumentType" 
+                                           asp-action="DeleteInstrumentType" 
+                                           onclick="return confirm('Are you sure to delete this record?')">Sil</button>
                                     </td>
 
                                 </tr>

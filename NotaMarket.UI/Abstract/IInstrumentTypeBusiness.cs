@@ -11,5 +11,7 @@ namespace NotaMarket.UI.Abstract
     {
         Task<ResponseListModel<InstrumentTypeModel>> GetInstrumentTypesFromApi();
         Task<ResponseObjectModel<CreateInstrumentTypeModel>> CreateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel);
+        Task<ResponseObjectModel<CreateInstrumentTypeModel>> UpdateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel);
+        Task<ResponseObjectModel<CreateInstrumentTypeModel>> DeleteInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel);
     }
 }

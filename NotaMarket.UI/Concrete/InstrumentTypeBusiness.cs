@@ -24,17 +24,33 @@ namespace NotaMarket.UI.Concrete
         public async Task<ResponseListModel<InstrumentTypeModel>> GetInstrumentTypesFromApi()
         {
             string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/GetInstrumentTypes";
-            var instruments = await _restApiGenerator.GetApi<ResponseListModel<InstrumentTypeModel>>(url);
+            var instrumentsTypes = await _restApiGenerator.GetApi<ResponseListModel<InstrumentTypeModel>>(url);
 
-            return instruments;
+            return instrumentsTypes;
         }
 
         public async Task<ResponseObjectModel<CreateInstrumentTypeModel>> CreateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel)
         {
             string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/CreateInstrumentType";
-            var instruments = await _restApiGenerator.PostApi<ResponseObjectModel<CreateInstrumentTypeModel>>(createInstrumentTypeModel,url);
+            var instrumentsTypes = await _restApiGenerator.PostApi<ResponseObjectModel<CreateInstrumentTypeModel>>(createInstrumentTypeModel,url);
 
-            return instruments;
+            return instrumentsTypes;
+        }
+
+        public async Task<ResponseObjectModel<CreateInstrumentTypeModel>> UpdateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/UpdateInstrumentType";
+            var instrumentsTypes = await _restApiGenerator.PutApi<ResponseObjectModel<CreateInstrumentTypeModel>>(createInstrumentTypeModel, url);
+
+            return instrumentsTypes;
+        }
+
+        public async Task<ResponseObjectModel<CreateInstrumentTypeModel>> DeleteInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/DeleteInstrumentType";
+            var instrumentsTypes = await _restApiGenerator.PostApi<ResponseObjectModel<CreateInstrumentTypeModel>>(createInstrumentTypeModel, url);
+
+            return instrumentsTypes;
         }
     }
 }

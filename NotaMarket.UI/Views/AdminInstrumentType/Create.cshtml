@@ -1,6 +1,6 @@
 ﻿
 
-@model NotaMarket.UI.Models.CreateInstrumentTypeModel
+@model NotaMarket.UI.Models.Dtos.CreateInstrumentTypeDto
 
 @{
     Layout = "_AdminLayout";
@@ -21,19 +21,16 @@
                 <h2>Enstürman Tipi</h2>
             </div>
             <div class="body">
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" id="instrumentType-create-form" data-parsley-validate novalidate>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"></div>
-                        <input type="text" class="form-control" placeholder="Enstürman Tipi Adı" aria-label="InstrumentTypeName" ariadescribedby="basic-addon1" asp-for="InstrumentTypeName">
+                        <input type="text" class="form-control" placeholder="Enstürman Tipi Adı" aria-label="InstrumentTypeName" ariadescribedby="basic-addon1" asp-for="InstrumentTypeName" required data-parsley-required>
                     </div>
                     <div class="input-group mb-3">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile02" asp-for="FormFile">
+                            <input type="file" class="custom-file-input" id="inputGroupFile02" asp-for="FormFile"required data-parsley-required>
                             <label class="custom-file-label" for="inputGroupFile02">Fotoğraf Ekle</label>
                         </div>
-                        @*<div class="input-group-append">
-                <span class="input-group-text" id="">Upload</span>
-            </div>*@
                     </div>
                     <div class=" text-right hidden-xs">
                         <button type="submit" asp-controller="AdminInstrumentType" asp-action="CreateUpload" class="btn btn-sm btn-primary" title="">Oluştur</button>

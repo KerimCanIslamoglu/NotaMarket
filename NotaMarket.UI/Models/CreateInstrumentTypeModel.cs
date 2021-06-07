@@ -17,6 +17,5 @@ namespace NotaMarket.UI.Models
         public string Description { get; set; }
         public string UploadedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
-        public IFormFile FormFile { get; set; }
     }
 }

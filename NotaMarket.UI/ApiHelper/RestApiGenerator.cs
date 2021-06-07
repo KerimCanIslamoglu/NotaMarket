@@ -2,6 +2,8 @@
 using NotaMarket.UI.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -45,18 +47,19 @@ namespace NotaMarket.UI.ApiHelper
         {
             using (var httpClient = new HttpClient())
             {
-                StringContent strContent = new StringContent(JsonConvert.SerializeObject(jsonContent), Encoding.UTF8, "application/json");
-
-                var content = new MultipartFormDataContent();
-
-                content.Add(strContent);
-
-                using (var response = await httpClient.PostAsync(url, content))
+                using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture)))
                 {
+                    //content.Add(new StreamContent(new MemoryStream(jsonContent)), "bilddatei", "upload.jpg");
 
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<T>(apiResponse);
+                    using (var response = await httpClient.PostAsync(url, content))
+                    {
+
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<T>(apiResponse);
+                    }
                 }
+
+                   
             }
         }
 

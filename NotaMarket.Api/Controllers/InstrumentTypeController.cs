@@ -43,11 +43,41 @@ namespace NotaMarket.Api.Controllers
 
         [HttpPost]
         [Route("api/[controller]/CreateInstrumentType")]
-        public IActionResult CreateInstrumentType([FromForm] CreateInstrumentTypeModel CreateInstrumentTypeModel)
+        public IActionResult CreateInstrumentType(CreateInstrumentTypeModel createInstrumentTypeModel)
         {
-            _instrumentTypeService.CreateInstrumentType(CreateInstrumentTypeModel.FormFile,_mapper.Map<CreateInstrumentTypeModel, InstrumentType>(CreateInstrumentTypeModel));
+            _instrumentTypeService.CreateInstrumentType(_mapper.Map<CreateInstrumentTypeModel, InstrumentType>(createInstrumentTypeModel));
 
             return Ok(new ResponseObjectModel<CreateInstrumentTypeModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = "Başarılı",
+                Response = null
+            });
+        }
+
+        [HttpPut]
+        [Route("api/[controller]/UpdateInstrumentType")]
+        public IActionResult UpdateInstrumentType(DeleteInstrumentTypeModel updateInstrumentTypeModel)
+        {
+            _instrumentTypeService.UpdateInstrumentType(_mapper.Map<DeleteInstrumentTypeModel, InstrumentType>(updateInstrumentTypeModel));
+
+            return Ok(new ResponseObjectModel<DeleteInstrumentTypeModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = "Başarılı",
+                Response = null
+            });
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/DeleteInstrumentType")]
+        public IActionResult DeleteInstrumentType(DeleteInstrumentTypeModel instrumentTypeModel)
+        {
+            _instrumentTypeService.DeleteInstrumentType(_mapper.Map<DeleteInstrumentTypeModel, InstrumentType>(instrumentTypeModel));
+
+            return Ok(new ResponseObjectModel<DeleteInstrumentTypeModel>
             {
                 Success = true,
                 StatusCode = 200,

@@ -11,6 +11,8 @@ namespace NotaMarket.Business.Abstract
     public interface IInstrumentTypeService
     {
         List<InstrumentType> GetInstrumentTypes();
-        void CreateInstrumentType(IFormFile file,InstrumentType instrumentType);
+        void CreateInstrumentType(InstrumentType instrumentType);
+        void UpdateInstrumentType(InstrumentType instrumentType);
+        void DeleteInstrumentType(InstrumentType instrumentType);
     }
 }

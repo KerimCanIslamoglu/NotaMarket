@@ -13,6 +13,8 @@ namespace NotaMarket.UI.Extensions
         public MappingProfile()
         {
             CreateMap<InstrumentTypeModel, InstrumentTypeDto>().ReverseMap();
+            CreateMap<InstrumentTypeModel, CreateInstrumentTypeModel>().ReverseMap();
+            CreateMap<InstrumentTypeDto, CreateInstrumentTypeModel>().ReverseMap();
         }
     }
 }
