@@ -11,8 +11,9 @@ namespace NotaMarket.UI.Abstract
     public interface IInstrumentTypeBusiness
     {
         Task<ResponseListModel<InstrumentTypeModel>> GetInstrumentTypesFromApi();
+        Task<ResponseObjectModel<InstrumentTypeModel>> GetInstrumentTypeByIdFromApi(int id);
         Task<ResponseObjectModel<CreateInstrumentTypeModel>> CreateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel);
-        Task<ResponseObjectModel<CreateInstrumentTypeModel>> UpdateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel);
-        Task<ResponseObjectModel<CreateInstrumentTypeModel>> DeleteInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel);
+        Task<ResponseObjectModel<InstrumentTypeModel>> UpdateInstrumentTypeFromApi(InstrumentTypeModel instrumentTypeModel);
+        Task<ResponseObjectModel<InstrumentTypeModel>> DeleteInstrumentTypeFromApi(int id);
     }
 }

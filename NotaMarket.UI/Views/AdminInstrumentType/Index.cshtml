@@ -5,6 +5,7 @@
     int i = 1;
 }
 
+
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
@@ -31,7 +32,7 @@
                                 <th>#</th>
                                 <th>Id</th>
                                 <th>Adı</th>
-                                <th>Url</th>
+                                <th>Fotoğraf</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -40,7 +41,7 @@
                                 <th>#</th>
                                 <th>Id</th>
                                 <th>Adı</th>
-                                <th>Url</th>
+                                <th>Fotoğraf</th>
                                 <th></th>
                             </tr>
                         </tfoot>
@@ -52,14 +53,21 @@
                                     <td>@i</td>
                                     <td>@item.Id</td>
                                     <td>@item.InstrumentTypeName</td>
-                                    <td>@item.PhotoUrl</td>
+                                    <td><img style="height:50px;width:50px" src="@item.Image" alt="@item.InstrumentTypeName" /></td>
                                     <td>
-                                        <button href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Güncelle</button>
-                                        <button type="submit" class="btn btn-sm btn-danger" 
-                                           title="" 
-                                           asp-controller="AdminInstrumentType" 
-                                           asp-action="DeleteInstrumentType" 
-                                           onclick="return confirm('Are you sure to delete this record?')">Sil</button>
+
+                                        <a class="btn btn-sm btn-primary"
+                                           title=""
+                                           asp-controller="AdminInstrumentType"
+                                           asp-action="UpdateInstrumentType"
+                                           asp-route-id="@item.Id">Güncelle</a>
+
+                                        <a class="btn btn-sm btn-danger"
+                                           title=""
+                                           asp-controller="AdminInstrumentType"
+                                           asp-action="DeleteInstrumentType"
+                                           asp-route-id="@item.Id">Sil</a>
+
                                     </td>
 
                                 </tr>
@@ -74,3 +82,4 @@
         </div>
     </div>
 </div>
+

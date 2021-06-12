@@ -38,20 +38,28 @@ namespace NotaMarket.UI.Concrete
             return instrumentsTypes;
         }
 
-        public async Task<ResponseObjectModel<CreateInstrumentTypeModel>> UpdateInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel)
+        public async Task<ResponseObjectModel<InstrumentTypeModel>> UpdateInstrumentTypeFromApi(InstrumentTypeModel instrumentTypeModel)
         {
             string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/UpdateInstrumentType";
-            var instrumentsTypes = await _restApiGenerator.PutApi<ResponseObjectModel<CreateInstrumentTypeModel>>(createInstrumentTypeModel, url);
+            var instrumentsTypes = await _restApiGenerator.PutApi<ResponseObjectModel<InstrumentTypeModel>>(instrumentTypeModel, url);
 
             return instrumentsTypes;
         }
 
-        public async Task<ResponseObjectModel<CreateInstrumentTypeModel>> DeleteInstrumentTypeFromApi(CreateInstrumentTypeModel createInstrumentTypeModel)
+        public async Task<ResponseObjectModel<InstrumentTypeModel>> DeleteInstrumentTypeFromApi(int id)
         {
-            string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/DeleteInstrumentType";
-            var instrumentsTypes = await _restApiGenerator.PostApi<ResponseObjectModel<CreateInstrumentTypeModel>>(createInstrumentTypeModel, url);
+            string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/DeleteInstrumentType/"+id;
+            var instrumentsTypes = await _restApiGenerator.DeleteApi<ResponseObjectModel<InstrumentTypeModel>>(url);
 
             return instrumentsTypes;
+        }
+
+        public async Task<ResponseObjectModel<InstrumentTypeModel>> GetInstrumentTypeByIdFromApi(int id)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "InstrumentType/GetInstrumentTypeById/" + id;
+            var instrumentsType = await _restApiGenerator.GetApi<ResponseObjectModel<InstrumentTypeModel>>(url);
+
+            return instrumentsType;
         }
     }
 }

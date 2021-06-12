@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NotaMarket.Api.Model.InstrumentType
 {
-    public class DeleteInstrumentTypeModel
+    public class UpdateInstrumentTypeModel
     {
         public int Id { get; set; }
         public string InstrumentTypeName { get; set; }

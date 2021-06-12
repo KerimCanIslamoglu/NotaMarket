@@ -21,7 +21,7 @@ namespace NotaMarket.Api.Extensions
                 .ForMember(x => x.InstrumentTypeName, s => s.MapFrom(a => a.InstrumentType.InstrumentTypeName));
 
             CreateMap<InstrumentType, InstrumentTypeModel>().ReverseMap();
-            CreateMap<InstrumentType, DeleteInstrumentTypeModel>().ReverseMap();
+            CreateMap<InstrumentType, UpdateInstrumentTypeModel>().ReverseMap();
 
 
             CreateMap<InstrumentType, CreateInstrumentTypeModel>().ReverseMap();

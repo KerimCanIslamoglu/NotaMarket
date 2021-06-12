@@ -30,6 +30,11 @@ namespace NotaMarket.Business.Concrete
             _instrumentTypeDal.Delete(instrumentType);
         }
 
+        public InstrumentType GetInstrumentTypeById(int id)
+        {
+            return _instrumentTypeDal.GetById(id);
+        }
+
         public List<InstrumentType> GetInstrumentTypes()
         {
             return _instrumentTypeDal.GetInstrumentTypesWithInstrument();

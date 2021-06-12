@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace NotaMarket.UI.Controllers
@@ -33,6 +34,12 @@ namespace NotaMarket.UI.Controllers
             var instrumentType =await _instrumentTypeBusiness.GetInstrumentTypesFromApi();
 
             model=instrumentType?.Response.Select(_mapper.Map<InstrumentTypeModel, InstrumentTypeDto>).ToList();
+
+            foreach (var item in model)
+            {
+                if (item.Data.Length > 0)
+                    item.Image = $"data:{item.FileType};base64,{Convert.ToBase64String(item.Data, 0, item.Data.Length)}";
+            }
 
             return View(model);
         }
@@ -67,17 +74,73 @@ namespace NotaMarket.UI.Controllers
 
             var instrumentType = await _instrumentTypeBusiness.CreateInstrumentTypeFromApi(createInstrumentTypeModel);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");   //TODO ViewData ile geriye mesaj döndür.
         }
 
-        [HttpPost]
-        public async Task<IActionResult> DeleteInstrumentType(InstrumentTypeDto instrumentTypeDto)
+        [HttpGet]
+        public async Task<IActionResult> UpdateInstrumentType(int id)
         {
+            var instrumentType = await _instrumentTypeBusiness.GetInstrumentTypeByIdFromApi(id);
 
-            var instrumentType = await _instrumentTypeBusiness
-                .DeleteInstrumentTypeFromApi(_mapper.Map<InstrumentTypeDto, CreateInstrumentTypeModel>(instrumentTypeDto));
+            if (instrumentType==null)
+                return View("Index");  //TODO ViewData ile geriye mesaj döndür.
 
-            return RedirectToAction("Index");
+            var updateInstrumentTypeDto = new UpdateInstrumentTypeDto();
+
+            using (var stream = new MemoryStream(instrumentType.Response?.Data))
+            {
+                IFormFile file = new FormFile(stream, 0, instrumentType.Response.Data.Length, instrumentType.Response.FileName, instrumentType.Response.FileName);
+
+                updateInstrumentTypeDto.FormFile = file;
+            }
+            updateInstrumentTypeDto.Id = instrumentType.Response.Id;
+            updateInstrumentTypeDto.InstrumentTypeName = instrumentType.Response.InstrumentTypeName;
+           
+
+            return View("Update", updateInstrumentTypeDto);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateInstrumentTypeUpload(UpdateInstrumentTypeDto updateInstrumentTypeDto)
+        {
+            var instrumentTypeModel = new InstrumentTypeModel();
+
+            instrumentTypeModel.Id = updateInstrumentTypeDto.Id;
+            instrumentTypeModel.InstrumentTypeName = updateInstrumentTypeDto.InstrumentTypeName;
+
+            if (updateInstrumentTypeDto.FormFile!=null)
+            {
+                var fileName = Path.GetFileNameWithoutExtension(updateInstrumentTypeDto.FormFile?.FileName);
+                var extension = Path.GetExtension(updateInstrumentTypeDto.FormFile?.FileName);
+
+                instrumentTypeModel.FileType = updateInstrumentTypeDto.FormFile?.ContentType;
+                instrumentTypeModel.Extension = extension;
+                instrumentTypeModel.FileName = fileName;
+                instrumentTypeModel.CreatedOn = DateTime.Now;
+                instrumentTypeModel.UploadedBy = "Admin";
+                instrumentTypeModel.Description = "Desc";
+                instrumentTypeModel.PhotoUrl = "TestUrl";
+
+                using (var dataStream = new MemoryStream())
+                {
+                    await updateInstrumentTypeDto.FormFile?.CopyToAsync(dataStream);
+                    instrumentTypeModel.Data = dataStream.ToArray();
+                }
+            }
+
+            await _instrumentTypeBusiness.UpdateInstrumentTypeFromApi(instrumentTypeModel);
+
+            return RedirectToAction("Index");   //TODO ViewData ile geriye mesaj döndür.
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteInstrumentType(int id)
+        {
+            await _instrumentTypeBusiness.DeleteInstrumentTypeFromApi(id);  
+
+            return RedirectToAction("Index");  //TODO ViewData ile geriye mesaj döndür.
         }
     }
 }

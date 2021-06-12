@@ -42,6 +42,33 @@ namespace NotaMarket.Api.Controllers
             });
         }
 
+        [HttpGet]
+        [Route("api/[controller]/GetInstrumentTypeById/{id}")]
+        public IActionResult GetInstrumentTypeById(int id)
+        {
+            var instrumentTypes = _instrumentTypeService
+                .GetInstrumentTypeById(id);
+
+            if (instrumentTypes == null)
+            {
+                return NotFound(new ResponseObjectModel<InstrumentTypeModel>
+                {
+                    Success = false,
+                    StatusCode = 404,
+                    Message = $"{id} 'li enstürman tipi bulunamadı",
+                    Response = null
+                });
+            }
+
+            return Ok(new ResponseObjectModel<InstrumentTypeModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = "Başarılı",
+                Response = _mapper.Map<InstrumentType,InstrumentTypeModel>(instrumentTypes) 
+            });
+        }
+
         [HttpPost]
         [Route("api/[controller]/CreateInstrumentType")]
         public IActionResult CreateInstrumentType(CreateInstrumentTypeModel createInstrumentTypeModel)
@@ -59,11 +86,11 @@ namespace NotaMarket.Api.Controllers
 
         [HttpPut]
         [Route("api/[controller]/UpdateInstrumentType")]
-        public IActionResult UpdateInstrumentType(DeleteInstrumentTypeModel updateInstrumentTypeModel)
+        public IActionResult UpdateInstrumentType(UpdateInstrumentTypeModel updateInstrumentTypeModel)
         {
-            _instrumentTypeService.UpdateInstrumentType(_mapper.Map<DeleteInstrumentTypeModel, InstrumentType>(updateInstrumentTypeModel));
+            _instrumentTypeService.UpdateInstrumentType(_mapper.Map<UpdateInstrumentTypeModel, InstrumentType>(updateInstrumentTypeModel));
 
-            return Ok(new ResponseObjectModel<DeleteInstrumentTypeModel>
+            return Ok(new ResponseObjectModel<UpdateInstrumentTypeModel>
             {
                 Success = true,
                 StatusCode = 200,
@@ -72,13 +99,25 @@ namespace NotaMarket.Api.Controllers
             });
         }
 
-        [HttpPost]
-        [Route("api/[controller]/DeleteInstrumentType")]
-        public IActionResult DeleteInstrumentType(DeleteInstrumentTypeModel instrumentTypeModel)
+        [HttpDelete]
+        [Route("api/[controller]/DeleteInstrumentType/{id}")]
+        public IActionResult DeleteInstrumentType(int id)
         {
-            _instrumentTypeService.DeleteInstrumentType(_mapper.Map<DeleteInstrumentTypeModel, InstrumentType>(instrumentTypeModel));
+            var instrumentType = _instrumentTypeService.GetInstrumentTypeById(id);
 
-            return Ok(new ResponseObjectModel<DeleteInstrumentTypeModel>
+            if (instrumentType==null)
+            {
+                return NotFound(new ResponseObjectModel<string>
+                {
+                    Success = false,
+                    StatusCode = 404,
+                    Message = $"{id} 'li enstürman tipi bulunamadı",
+                    Response = null
+                });
+            }
+            _instrumentTypeService.DeleteInstrumentType(instrumentType);
+
+            return Ok(new ResponseObjectModel<string>
             {
                 Success = true,
                 StatusCode = 200,
