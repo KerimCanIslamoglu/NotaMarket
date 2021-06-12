@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using NotaMarket.UI.Abstract;
 using NotaMarket.UI.Models;
 using NotaMarket.UI.Models.Dtos;
+using NotaMarket.UI.Models.Dtos.InstrumentTypeDtos;
+using NotaMarket.UI.Models.InstrumentTypeModels;
 using System;
 using System.Collections.Generic;
 using System.IO;

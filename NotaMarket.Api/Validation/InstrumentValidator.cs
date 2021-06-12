@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using NotaMarket.Api.Model;
+using NotaMarket.Api.Model.Instrument;
 using NotaMarket.Entities;
 using System;
 using System.Collections.Generic;

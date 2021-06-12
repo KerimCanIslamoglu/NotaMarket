@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NotaMarket.UI.Models.Dtos
+namespace NotaMarket.UI.Models.Dtos.InstrumentTypeDtos
 {
     public class InstrumentTypeDto
     {

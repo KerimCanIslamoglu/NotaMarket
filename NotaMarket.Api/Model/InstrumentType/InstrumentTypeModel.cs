@@ -1,9 +1,10 @@
-﻿using System;
+﻿using NotaMarket.Api.Model.Instrument;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NotaMarket.Api.Model
+namespace NotaMarket.Api.Model.InstrumentType
 {
     public class InstrumentTypeModel
     {

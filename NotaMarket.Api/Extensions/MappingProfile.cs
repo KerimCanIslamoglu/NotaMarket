@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using NotaMarket.Api.Model;
+using NotaMarket.Api.Model.Composer;
+using NotaMarket.Api.Model.SheetMusic;
+using NotaMarket.Api.Model.Instrument;
+using NotaMarket.Api.Model.InstrumentType;
 using NotaMarket.Entities;
 using System;
 using System.Collections.Generic;

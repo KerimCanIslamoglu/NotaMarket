@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotaMarket.Api.Model;
+using NotaMarket.Api.Model.SheetMusic;
 using NotaMarket.Business.Abstract;
 using NotaMarket.Entities;
 using System;

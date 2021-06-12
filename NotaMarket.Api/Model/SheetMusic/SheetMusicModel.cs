@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NotaMarket.Api.Model
+namespace NotaMarket.Api.Model.SheetMusic
 {
     public class SheetMusicModel
     {

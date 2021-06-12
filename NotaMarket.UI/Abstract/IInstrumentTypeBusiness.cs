@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NotaMarket.UI.Models;
+using NotaMarket.UI.Models.InstrumentTypeModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NotaMarket.UI.Models
+namespace NotaMarket.Api.Model.InstrumentType
 {
-    public class InstrumentTypeModel
+    public class DeleteInstrumentTypeModel
     {
         public int Id { get; set; }
         public string InstrumentTypeName { get; set; }

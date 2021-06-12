@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using NotaMarket.UI.Abstract;
 using NotaMarket.UI.ApiHelper;
 using NotaMarket.UI.Models;
+using NotaMarket.UI.Models.InstrumentTypeModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

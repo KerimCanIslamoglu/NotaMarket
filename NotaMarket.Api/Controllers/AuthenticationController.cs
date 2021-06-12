@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using NotaMarket.Api.Model;
+using NotaMarket.Api.Model.Identity;
 using NotaMarket.DataAccess.Identity;
 using System;
 using System.Collections.Generic;

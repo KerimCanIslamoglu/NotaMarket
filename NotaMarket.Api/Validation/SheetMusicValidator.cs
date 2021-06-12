@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using NotaMarket.Api.Model;
+using NotaMarket.Api.Model.SheetMusic;
 using System;
 using System.Collections.Generic;
 using System.Linq;

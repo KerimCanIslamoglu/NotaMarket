@@ -2,7 +2,9 @@
 using NotaMarket.UI.Abstract;
 using NotaMarket.UI.ApiHelper;
 using NotaMarket.UI.Models;
-using NotaMarket.UI.Models.Dtos;
+using NotaMarket.UI.Models.Dtos.InstrumentSheetDtos;
+using NotaMarket.UI.Models.InstrumentModels;
+using NotaMarket.UI.Models.SheetMusicModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

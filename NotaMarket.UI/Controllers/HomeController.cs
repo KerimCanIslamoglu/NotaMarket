@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Logging;
 using NotaMarket.UI.Abstract;
 using NotaMarket.UI.Models;
-using NotaMarket.UI.Models.Dtos;
+using NotaMarket.UI.Models.Dtos.HomeDtos;
+using NotaMarket.UI.Models.InstrumentModels;
+using NotaMarket.UI.Models.SheetMusicModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

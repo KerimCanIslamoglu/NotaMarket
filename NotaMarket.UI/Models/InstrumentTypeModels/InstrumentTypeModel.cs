@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NotaMarket.Api.Model
+namespace NotaMarket.UI.Models.InstrumentTypeModels
 {
-    public class CreateInstrumentTypeModel
+    public class InstrumentTypeModel
     {
+        public int Id { get; set; }
         public string InstrumentTypeName { get; set; }
         public string PhotoUrl { get; set; }
         public byte[] Data { get; set; }
