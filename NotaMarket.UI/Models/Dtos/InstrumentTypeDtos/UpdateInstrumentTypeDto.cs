@@ -11,5 +11,6 @@ namespace NotaMarket.UI.Models.Dtos.InstrumentTypeDtos
         public int Id { get; set; }
         public string InstrumentTypeName { get; set; }
         public IFormFile FormFile { get; set; }
+        public string ImageString { get; set; }
     }
 }

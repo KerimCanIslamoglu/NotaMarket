@@ -20,19 +20,20 @@
             </div>
             <div class="body">
                 <form method="post" enctype="multipart/form-data" id="instrumentType-update-form" data-parsley-validate novalidate>
-                    <input asp-for="Id" type="hidden"/>
+                    <input asp-for="Id" type="hidden" />
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"></div>
                         <input type="text" class="form-control" placeholder="Enstürman Tipi Adı" aria-label="InstrumentTypeName" ariadescribedby="basic-addon1" asp-for="InstrumentTypeName" required data-parsley-required>
                     </div>
                     <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile02" asp-for="FormFile" />
-                            <label class="custom-file-label" for="inputGroupFile02">Fotoğrafı güncellemek için tıklayınız</label>
+                        <div class="card">
+                            <div class="body">
+                                <input type="file" class="dropify formFile" asp-for="FormFile" data-allowed-file-extensions="jpg png jpeg">
+                            </div>
                         </div>
                     </div>
                     <div class=" text-right hidden-xs">
-                        <button type="submit" asp-controller="AdminInstrumentType" asp-action="UpdateInstrumentTypeUpload" class="btn btn-sm btn-primary" title="">Oluştur</button>
+                        <button type="submit" asp-controller="AdminInstrumentType" asp-action="UpdateInstrumentTypeUpload" class="btn btn-sm btn-primary" title="">Güncelle</button>
                     </div>
                 </form>
             </div>
@@ -40,3 +41,26 @@
     </div>
 </div>
 
+<script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script>
+    
+
+    $(function () {
+        resetPreview('formFile', '@Model.ImageString','@Model.FormFile.FileName');
+    });
+    function resetPreview(name, src, fname = '') {
+        debugger;
+        let input = $('.formFile');
+        let wrapper = input.closest('.dropify-wrapper');
+        let preview = wrapper.find('.dropify-preview');
+        let filename = wrapper.find('.dropify-filename-inner');
+        let render = wrapper.find('.dropify-render').html('');
+
+        input.val('').attr('title', fname);
+        wrapper.removeClass('has-error').addClass('has-preview');
+        filename.html(fname);
+
+        render.append($('<img />').attr('src', src).css('max-height', input.data('height') || ''));
+        preview.fadeIn();
+    }
+</script>

@@ -128,6 +128,20 @@ namespace NotaMarket.UI.Controllers
                     instrumentTypeModel.Data = dataStream.ToArray();
                 }
             }
+            else
+            {
+                var instrumentType = await _instrumentTypeBusiness.GetInstrumentTypeByIdFromApi(updateInstrumentTypeDto.Id);
+
+                instrumentTypeModel.FileType = instrumentType.Response?.FileName;
+                instrumentTypeModel.Extension = instrumentType.Response?.Extension;
+                instrumentTypeModel.FileName = instrumentType.Response?.FileName;
+                instrumentTypeModel.CreatedOn = instrumentType.Response?.CreatedOn;
+                instrumentTypeModel.UploadedBy = instrumentType.Response?.UploadedBy;
+                instrumentTypeModel.Description = instrumentType.Response?.Description;
+                instrumentTypeModel.PhotoUrl = instrumentType.Response?.PhotoUrl;
+                instrumentTypeModel.Data = instrumentType.Response?.Data;
+
+            }
 
             await _instrumentTypeBusiness.UpdateInstrumentTypeFromApi(instrumentTypeModel);
 
