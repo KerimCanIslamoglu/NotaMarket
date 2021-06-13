@@ -16,10 +16,11 @@
     <link rel="stylesheet" type="text/css" href="~/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="~/assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="~/assets/vendor/sweetalert/sweetalert.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/vendor/dropify/css/dropify.min.css">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="~/assetshtml/css/site.min.css">
-    <link rel="stylesheet" type="text/css" href="~/assets/vendor/dropify/css/dropify.min.css">
 
 
     <title>@ViewData["Title"] - NotaMarket.Admin</title>
@@ -130,6 +131,22 @@
 
     <script src="~/assets/vendor/dropify/js/dropify.js"></script>
     <script src="~/assetshtml/js/pages/forms/dropify.js"></script>
+    <script src="~/assets/vendor/toastr/toastr.js"></script>
+
+    <script>
+         toastr.options.timeOut = "3000";
+         toastr.options.closeButton = true;
+         toastr.options.positionClass = 'toast-top-right';
+
+         if ("@TempData["ErrorMessage"]") {
+             toastr['error']('@TempData["ErrorMessage"]');
+             @(TempData.Remove("ErrorMessage"));
+         }
+         if ("@TempData["SuccessMessage"]") {
+             toastr['success']('@TempData["SuccessMessage"]');
+             @(TempData.Remove("SuccessMessage"));
+         }
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

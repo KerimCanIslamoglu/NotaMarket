@@ -34,7 +34,7 @@ namespace NotaMarket.Api.Controllers
             {
                 Success = true,
                 StatusCode = 200,
-                Message = "Başarılı",
+                Message = $"{instrumentModel.InstrumentName} isimli enstürman başarıyla oluşturuldu.",
                 Response = null
             });
         }

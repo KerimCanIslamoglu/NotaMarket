@@ -74,6 +74,11 @@ namespace NotaMarket.UI.Controllers
 
             var instrumentType = await _instrumentTypeBusiness.CreateInstrumentTypeFromApi(createInstrumentTypeModel);
 
+            if (instrumentType.Success)
+                TempData["SuccessMessage"] = instrumentType.Message;
+            else
+                TempData["ErrorMessage"] = instrumentType.Message;
+
             return RedirectToAction("Index");   //TODO ViewData ile geriye mesaj döndür.
         }
 
@@ -143,7 +148,12 @@ namespace NotaMarket.UI.Controllers
 
             }
 
-            await _instrumentTypeBusiness.UpdateInstrumentTypeFromApi(instrumentTypeModel);
+            var instrumentTypeResult=await _instrumentTypeBusiness.UpdateInstrumentTypeFromApi(instrumentTypeModel);
+
+            if (instrumentTypeResult.Success)
+                TempData["SuccessMessage"] = instrumentTypeResult.Message;
+            else
+                TempData["ErrorMessage"] = instrumentTypeResult.Message;
 
             return RedirectToAction("Index");   //TODO ViewData ile geriye mesaj döndür.
         }
@@ -152,7 +162,12 @@ namespace NotaMarket.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteInstrumentType(int id)
         {
-            await _instrumentTypeBusiness.DeleteInstrumentTypeFromApi(id);  
+            var instrumentTypeResult = await _instrumentTypeBusiness.DeleteInstrumentTypeFromApi(id);
+
+            if (instrumentTypeResult.Success)
+                TempData["SuccessMessage"] = instrumentTypeResult.Message;
+            else
+                TempData["ErrorMessage"] = instrumentTypeResult.Message;
 
             return RedirectToAction("Index");  //TODO ViewData ile geriye mesaj döndür.
         }

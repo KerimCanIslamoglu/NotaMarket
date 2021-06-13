@@ -34,7 +34,7 @@ namespace NotaMarket.Api.Controllers
             {
                 Success = true,
                 StatusCode = 200,
-                Message = "Başarılı",
+                Message = $"{composerModel.ComposerName} isimli müzisyen başarıyla oluşturuldu.",
                 Response = null
             });
         }

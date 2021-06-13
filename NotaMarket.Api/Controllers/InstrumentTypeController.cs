@@ -79,7 +79,7 @@ namespace NotaMarket.Api.Controllers
             {
                 Success = true,
                 StatusCode = 200,
-                Message = "Başarılı",
+                Message = $"{createInstrumentTypeModel.InstrumentTypeName} isimli enstürman tipi başarıyla oluşturuldu.",
                 Response = null
             });
         }
@@ -94,7 +94,7 @@ namespace NotaMarket.Api.Controllers
             {
                 Success = true,
                 StatusCode = 200,
-                Message = "Başarılı",
+                Message = $"{updateInstrumentTypeModel.InstrumentTypeName} isimli enstürman tipi başarıyla güncelleştirildi.",
                 Response = null
             });
         }
@@ -121,7 +121,7 @@ namespace NotaMarket.Api.Controllers
             {
                 Success = true,
                 StatusCode = 200,
-                Message = "Başarılı",
+                Message = $"{instrumentType.InstrumentTypeName} isimli enstürman tipi başarıyla silindi.",
                 Response = null
             });
         }
