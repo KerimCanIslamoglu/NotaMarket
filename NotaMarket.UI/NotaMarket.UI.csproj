@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Template\**" />
+    <Content Remove="Template\**" />
+    <EmbeddedResource Remove="Template\**" />
+    <None Remove="Template\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Remove="wwwroot\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Remove="wwwroot\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -269,16 +276,6 @@
     <Content Remove="wwwroot\vendor\slick\slick.min.js" />
     <Content Remove="wwwroot\vendor\slick\slick.scss" />
     <Content Remove="wwwroot\vendor\sweetalert\sweetalert.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Template\cozastore\css\main.css" />
-    <None Remove="Template\cozastore\css\util.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Template\cozastore\css\main.css" />
-    <Content Include="Template\cozastore\css\util.css" />
   </ItemGroup>
 
   <ItemGroup>
