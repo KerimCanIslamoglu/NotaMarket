@@ -11,6 +11,9 @@ namespace NotaMarket.Business.Abstract
     {
         List<Instrument> GetInstruments();
         List<Instrument> GetLimitedInstruments(int count);
+        Instrument GetInstrumentById(int id);
         void CreateInstrument(Instrument instrument);
+        void UpdateInstrument(Instrument instrument);
+        void DeleteInstrument(Instrument instrument);
     }
 }

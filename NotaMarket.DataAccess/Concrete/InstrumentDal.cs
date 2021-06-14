@@ -19,6 +19,11 @@ namespace NotaMarket.DataAccess.Concrete
             _db = db;
         }
 
+        public Instrument GetInstrumentByIdWithType(int id)
+        {
+            return _db.Instruments.Where(x => x.Id == id).Include(x => x.InstrumentType).FirstOrDefault();
+        }
+
         public List<Instrument> GetInstrumentsWithType()
         {
             return _db.Instruments.Include(x => x.InstrumentType).ToList();

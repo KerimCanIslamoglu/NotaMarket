@@ -24,21 +24,6 @@ namespace NotaMarket.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        [Route("api/[controller]/CreateInstrument")]
-        public IActionResult CreateInstrument(CreateInstrumentModel instrumentModel)
-        {
-            _instrumentService.CreateInstrument(_mapper.Map<CreateInstrumentModel, Instrument>(instrumentModel));
-
-            return Ok(new ResponseObjectModel<CreateInstrumentModel>
-            {
-                Success = true,
-                StatusCode = 200,
-                Message = $"{instrumentModel.InstrumentName} isimli enstürman başarıyla oluşturuldu.",
-                Response = null
-            });
-        }
-
         [HttpGet]
         [Route("api/[controller]/GetInstruments")]
         public IActionResult GetInstruments()
@@ -79,6 +64,90 @@ namespace NotaMarket.Api.Controllers
                 Response = instruments
             });
 
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/GetInstrumentById/{id}")]
+        public IActionResult GetInstrumentById(int id)
+        {
+            var instrument= _instrumentService
+                .GetInstrumentById(id);
+
+            if (instrument == null)
+            {
+                return NotFound(new ResponseObjectModel<InstrumentModel>
+                {
+                    Success = false,
+                    StatusCode = 404,
+                    Message = $"{id} 'li enstürman bulunamadı",
+                    Response = null
+                });
+            }
+
+            return Ok(new ResponseObjectModel<InstrumentModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = "Başarılı",
+                Response = _mapper.Map<Instrument, InstrumentModel>(instrument)
+            });
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/CreateInstrument")]
+        public IActionResult CreateInstrument(CreateInstrumentModel instrumentModel)
+        {
+            _instrumentService.CreateInstrument(_mapper.Map<CreateInstrumentModel, Instrument>(instrumentModel));
+
+            return Ok(new ResponseObjectModel<CreateInstrumentModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = $"{instrumentModel.InstrumentName} isimli enstürman başarıyla oluşturuldu.",
+                Response = null
+            });
+        }
+
+        [HttpPut]
+        [Route("api/[controller]/UpdateInstrument")]
+        public IActionResult UpdateInstrument(UpdateInstrumentModel updateInstrumentModel)
+        {
+            _instrumentService.UpdateInstrument(_mapper.Map<UpdateInstrumentModel, Instrument>(updateInstrumentModel));
+
+            return Ok(new ResponseObjectModel<UpdateInstrumentModel>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = $"{updateInstrumentModel.InstrumentName} isimli enstürman başarıyla güncelleştirildi.",
+                Response = null
+            });
+        }
+
+        [HttpDelete]
+        [Route("api/[controller]/DeleteInstrument/{id}")]
+        public IActionResult DeleteInstrumentType(int id)
+        {
+            var instrument = _instrumentService.GetInstrumentById(id);
+
+            if (instrument == null)
+            {
+                return NotFound(new ResponseObjectModel<string>
+                {
+                    Success = false,
+                    StatusCode = 404,
+                    Message = $"{id} 'li enstürman bulunamadı",
+                    Response = null
+                });
+            }
+            _instrumentService.DeleteInstrument(instrument);
+
+            return Ok(new ResponseObjectModel<string>
+            {
+                Success = true,
+                StatusCode = 200,
+                Message = $"{instrument.InstrumentName} isimli enstürman başarıyla silindi.",
+                Response = null
+            });
         }
     }
 }

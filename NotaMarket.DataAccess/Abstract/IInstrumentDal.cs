@@ -11,5 +11,6 @@ namespace NotaMarket.DataAccess.Abstract
     {
         List<Instrument> GetInstrumentsWithType();
         List<Instrument> GetLimitedInstrumentsWithType(int count);
+        Instrument GetInstrumentByIdWithType(int id);
     }
 }

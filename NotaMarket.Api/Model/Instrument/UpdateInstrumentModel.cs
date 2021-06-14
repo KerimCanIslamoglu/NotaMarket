@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace NotaMarket.Entities
+namespace NotaMarket.Api.Model.Instrument
 {
-    public class Instrument
+    public class UpdateInstrumentModel
     {
         public int Id { get; set; }
         public string InstrumentName { get; set; }
@@ -19,8 +18,5 @@ namespace NotaMarket.Entities
         public string UploadedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public int InstrumentTypeId { get; set; }
-        public InstrumentType InstrumentType { get; set; }
-        public ICollection<SheetMusic> SheetMusic { get; set; }
-
     }
 }

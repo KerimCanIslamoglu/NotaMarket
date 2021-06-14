@@ -18,9 +18,9 @@ namespace NotaMarket.Business.Concrete
             _instrumentDal = instrumentDal;
         }
 
-        public void CreateInstrument(Instrument instrument)
+        public Instrument GetInstrumentById(int id)
         {
-            _instrumentDal.Create(instrument);
+            return _instrumentDal.GetInstrumentByIdWithType(id);
         }
 
         public List<Instrument> GetInstruments()
@@ -31,6 +31,20 @@ namespace NotaMarket.Business.Concrete
         public List<Instrument> GetLimitedInstruments(int count)
         {
             return _instrumentDal.GetLimitedInstrumentsWithType(count);
+        }
+
+        public void UpdateInstrument(Instrument instrument)
+        {
+            _instrumentDal.Update(instrument);
+        }
+        public void CreateInstrument(Instrument instrument)
+        {
+            _instrumentDal.Create(instrument);
+        }
+
+        public void DeleteInstrument(Instrument instrument)
+        {
+            _instrumentDal.Delete(instrument);
         }
     }
 }

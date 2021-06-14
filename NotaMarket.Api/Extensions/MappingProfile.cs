@@ -16,21 +16,30 @@ namespace NotaMarket.Api.Extensions
     {
         public MappingProfile()
         {
-            CreateMap<InstrumentModel, Instrument>()
-                .ReverseMap()
-                .ForMember(x => x.InstrumentTypeName, s => s.MapFrom(a => a.InstrumentType.InstrumentTypeName));
-
             CreateMap<InstrumentType, InstrumentTypeModel>().ReverseMap();
             CreateMap<InstrumentType, UpdateInstrumentTypeModel>().ReverseMap();
-
-
             CreateMap<InstrumentType, CreateInstrumentTypeModel>().ReverseMap();
+
+
+
+            CreateMap<InstrumentModel, Instrument>()
+               .ReverseMap()
+               .ForMember(x => x.InstrumentTypeName, s => s.MapFrom(a => a.InstrumentType.InstrumentTypeName));
             CreateMap<Instrument, CreateInstrumentModel>().ReverseMap();
+            CreateMap<Instrument, UpdateInstrumentModel>().ReverseMap();
+
+
 
             CreateMap<Composer, ComposerModel>().ReverseMap();
 
+
+
+
             CreateMap<SheetMusic, CreateSheetMusicModel>()
                 .ReverseMap();
+
+
+
 
 
             CreateMap<SheetMusicModel, SheetMusic>()
