@@ -36,5 +36,37 @@ namespace NotaMarket.UI.Concrete
 
             return instruments;
         }
+
+        public async Task<ResponseObjectModel<InstrumentModel>> GetInstrumentByIdFromApi(int id)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "Instrument/GetInstrumentById/" + id;
+            var instrument = await _restApiGenerator.GetApi<ResponseObjectModel<InstrumentModel>>(url);
+
+            return instrument;
+        }
+
+        public async Task<ResponseObjectModel<CreateInstrumentModel>> CreateInstrumentFromApi(CreateInstrumentModel createInstrumentModel)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "Instrument/CreateInstrument";
+            var instrument = await _restApiGenerator.PostApi<ResponseObjectModel<CreateInstrumentModel>>(createInstrumentModel, url);
+
+            return instrument;
+        }
+
+        public async Task<ResponseObjectModel<InstrumentModel>> UpdateInstrumentFromApi(InstrumentModel instrumentModel)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "Instrument/UpdateInstrument";
+            var instrument = await _restApiGenerator.PutApi<ResponseObjectModel<InstrumentModel>>(instrumentModel, url);
+
+            return instrument;
+        }
+
+        public async Task<ResponseObjectModel<InstrumentModel>> DeleteInstrumentFromApi(int id)
+        {
+            string url = _config.GetValue<string>("ApiUrl") + "Instrument/DeleteInstrument/" + id;
+            var instrument = await _restApiGenerator.DeleteApi<ResponseObjectModel<InstrumentModel>>(url);
+
+            return instrument;
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using NotaMarket.UI.Models;
+using NotaMarket.UI.Models.Dtos.InstrumentDtos;
 using NotaMarket.UI.Models.Dtos.InstrumentTypeDtos;
+using NotaMarket.UI.Models.InstrumentModels;
 using NotaMarket.UI.Models.InstrumentTypeModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,11 @@ namespace NotaMarket.UI.Extensions
             CreateMap<InstrumentTypeModel, InstrumentTypeDto>().ReverseMap();
             CreateMap<InstrumentTypeModel, CreateInstrumentTypeModel>().ReverseMap();
             CreateMap<InstrumentTypeDto, CreateInstrumentTypeModel>().ReverseMap();
+
+
+            CreateMap<InstrumentModel, InstrumentDto>().ReverseMap();
+            CreateMap<InstrumentModel, CreateInstrumentModel>().ReverseMap();
+            CreateMap<InstrumentDto, CreateInstrumentModel>().ReverseMap();
         }
     }
 }

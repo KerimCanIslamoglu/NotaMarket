@@ -22,15 +22,27 @@
             </div>
             <div class="body">
                 <form method="post" enctype="multipart/form-data" id="instrumentType-update-form" data-parsley-validate novalidate>
+
                     <input asp-for="Id" type="hidden" />
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend"></div>
-                        <input type="text" class="form-control" placeholder="Enstürman Tipi Adı" aria-label="InstrumentTypeName" ariadescribedby="basic-addon1" asp-for="InstrumentTypeName" required data-parsley-required>
+                        <input type="text" 
+                               class="form-control" 
+                               placeholder="Enstürman Tipi Adı" 
+                               aria-label="InstrumentTypeName" 
+                               ariadescribedby="basic-addon1" 
+                               asp-for="InstrumentTypeName" 
+                               required 
+                               data-parsley-required>
                     </div>
                     <div class="input-group mb-3">
                         <div class="card">
                             <div class="body">
-                                <input type="file" class="dropify formFile" asp-for="FormFile" data-allowed-file-extensions="jpg png jpeg">
+                                <input type="file" 
+                                       class="dropify formFile" 
+                                       asp-for="FormFile" 
+                                       data-allowed-file-extensions="jpg png jpeg">
                             </div>
                         </div>
                     </div>

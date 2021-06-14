@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace NotaMarket.UI.Models.InstrumentModels
 {
-    public class InstrumentModel
+    public class CreateInstrumentModel
     {
-        public int Id { get; set; }
         public string InstrumentName { get; set; }
         public string PhotoUrl { get; set; }
         public byte[] Data { get; set; }

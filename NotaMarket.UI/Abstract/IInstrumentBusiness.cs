@@ -12,5 +12,9 @@ namespace NotaMarket.UI.Abstract
     {
         Task<ResponseListModel<InstrumentModel>> GetInstrumentsFromApi();
         Task<ResponseListModel<InstrumentModel>> GetHomePageInstrumentsFromApi(int count);
+        Task<ResponseObjectModel<InstrumentModel>> GetInstrumentByIdFromApi(int id);
+        Task<ResponseObjectModel<CreateInstrumentModel>> CreateInstrumentFromApi(CreateInstrumentModel  createInstrumentModel);
+        Task<ResponseObjectModel<InstrumentModel>> UpdateInstrumentFromApi(InstrumentModel instrumentModel);
+        Task<ResponseObjectModel<InstrumentModel>> DeleteInstrumentFromApi(int id);
     }
 }

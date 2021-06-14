@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NotaMarket.UI.Models.InstrumentModels
+namespace NotaMarket.UI.Models.Dtos.InstrumentDtos
 {
-    public class InstrumentModel
+    public class UpdateInstrumentDto
     {
         public int Id { get; set; }
         public string InstrumentName { get; set; }
@@ -18,6 +18,5 @@ namespace NotaMarket.UI.Models.InstrumentModels
         public string UploadedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
         public int InstrumentTypeId { get; set; }
-        public string InstrumentTypeName { get; set; }
     }
 }
