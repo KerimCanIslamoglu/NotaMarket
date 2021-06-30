@@ -190,9 +190,10 @@ namespace NotaMarket.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthentication();
+            
             app.UseAuthorization();
+            app.UseAuthentication();
+            
             app.UseExceptionMiddleware();
             app.UseEndpoints(endpoints =>
             {
