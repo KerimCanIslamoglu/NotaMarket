@@ -191,8 +191,8 @@ namespace NotaMarket.Api
 
             app.UseRouting();
             
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
             
             app.UseExceptionMiddleware();
             app.UseEndpoints(endpoints =>
