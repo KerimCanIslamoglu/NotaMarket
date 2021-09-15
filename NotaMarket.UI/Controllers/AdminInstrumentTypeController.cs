@@ -29,17 +29,21 @@ namespace NotaMarket.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = new List<InstrumentTypeDto>();
+            //var model = new List<InstrumentTypeDto>();
 
             var instrumentType =await _instrumentTypeBusiness.GetInstrumentTypesFromApi();
 
-            model=instrumentType?.Response.Select(_mapper.Map<InstrumentTypeModel, InstrumentTypeDto>).ToList();
+            var model=instrumentType?.Response.Select(_mapper.Map<InstrumentTypeModel, InstrumentTypeDto>).ToList();
 
-            foreach (var item in model)
+            if (model != null)
             {
-                if (item.Data.Length > 0)
-                    item.Image = $"data:{item.FileType};base64,{Convert.ToBase64String(item.Data, 0, item.Data.Length)}";
+                foreach (var item in model)
+                {
+                    if (item.Data.Length > 0)
+                        item.Image = $"data:{item.FileType};base64,{Convert.ToBase64String(item.Data, 0, item.Data.Length)}";
+                }
             }
+            
 
             return View(model);
         }

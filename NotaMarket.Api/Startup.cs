@@ -83,21 +83,6 @@ namespace NotaMarket.Api
 
                     }
                 });
-                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                          new OpenApiSecurityScheme
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                }
-                            },
-                            new string[] {}
-
-                    }
-                });
             });
 
             services.AddDbContext<ApplicationDbContext>();
@@ -121,22 +106,20 @@ namespace NotaMarket.Api
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-
-          // Adding Jwt Bearer  
-          .AddJwtBearer(options =>
-          {
+            }).AddJwtBearer(options =>
+            {
               options.SaveToken = true;
               options.RequireHttpsMetadata = false;
               options.TokenValidationParameters = new TokenValidationParameters()
               {
                   ValidateIssuer = true,
                   ValidateAudience = true,
+                  ValidateIssuerSigningKey = true,
                   ValidAudience = Configuration["JWT:ValidAudience"],
                   ValidIssuer = Configuration["JWT:ValidIssuer"],
                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
               };
-          });
+            });
 
 
             services.AddMvc()
@@ -166,6 +149,9 @@ namespace NotaMarket.Api
                 .AddFluentValidation(fv => {
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
             });
+
+            services.AddAuthentication();
+
 
             services.AddTransient<IValidator<CreateInstrumentModel>, InstrumentValidator>();
             services.AddTransient<IValidator<CreateInstrumentTypeModel>, InstrumentTypeValidator>();

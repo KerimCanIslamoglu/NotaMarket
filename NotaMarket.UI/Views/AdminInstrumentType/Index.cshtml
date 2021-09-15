@@ -47,33 +47,36 @@
                             </tr>
                         </tfoot>
                         <tbody>
-
-                            @foreach (var item in Model)
+                            @if (Model != null)
                             {
-                                <tr>
-                                    <td>@i</td>
-                                    <td>@item.Id</td>
-                                    <td>@item.InstrumentTypeName</td>
-                                    <td><img style="height:50px;width:50px" src="@item.Image" alt="@item.InstrumentTypeName" /></td>
-                                    <td>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.Id</td>
+                                        <td>@item.InstrumentTypeName</td>
+                                        <td><img style="height:50px;width:50px" src="@item.Image" alt="@item.InstrumentTypeName" /></td>
+                                        <td>
 
-                                        <a class="btn btn-sm btn-primary"
-                                           title=""
-                                           asp-controller="AdminInstrumentType"
-                                           asp-action="UpdateInstrumentType"
-                                           asp-route-id="@item.Id">Güncelle</a>
+                                            <a class="btn btn-sm btn-primary"
+                                               title=""
+                                               asp-controller="AdminInstrumentType"
+                                               asp-action="UpdateInstrumentType"
+                                               asp-route-id="@item.Id">Güncelle</a>
 
-                                        <a class="btn btn-sm btn-danger"
-                                           title=""
-                                           asp-controller="AdminInstrumentType"
-                                           asp-action="DeleteInstrumentType"
-                                           asp-route-id="@item.Id">Sil</a>
+                                            <a class="btn btn-sm btn-danger"
+                                               title=""
+                                               asp-controller="AdminInstrumentType"
+                                               asp-action="DeleteInstrumentType"
+                                               asp-route-id="@item.Id">Sil</a>
 
-                                    </td>
+                                        </td>
 
-                                </tr>
-                                i++;
+                                    </tr>
+                                    i++;
+                                }
                             }
+
 
 
                         </tbody>

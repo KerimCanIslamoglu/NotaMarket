@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using NotaMarket.Api.Model;
 using NotaMarket.Api.Model.Identity;
 using NotaMarket.DataAccess.Identity;
 using System;
@@ -77,7 +78,7 @@ namespace NotaMarket.Api.Controllers
 
         [HttpPost]
         [Route("api/[controller]/Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
             string activityDescription;
             string activity = "Register";
@@ -116,11 +117,11 @@ namespace NotaMarket.Api.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     };
 
-                foreach (var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                }
-
+                //foreach (var userRole in userRoles)
+                //{
+                //    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                //}
+                authClaims.Add(new Claim(ClaimTypes.Role, "Admin"));
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
@@ -142,6 +143,43 @@ namespace NotaMarket.Api.Controllers
             {
                 Status = "Success",
                 Message = "Kullanıcı başarıyla oluşturuldu!",
+            });
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/CreateRole")]
+        public async Task<IActionResult> CreateRole(RoleModel roleModel)
+        {
+            var doesRoleExist = await _roleManager.FindByNameAsync(roleModel.RoleName);
+
+            if (doesRoleExist!=null)
+            {
+                return BadRequest(new ResponseObjectModel<string>
+                {
+                    Success = false,
+                    StatusCode = 400,
+                    Message = $"{roleModel.RoleName} adlı rol daha önce oluşturulmuş.",
+                    Response = null
+                });
+            }
+
+            IdentityResult result = await _roleManager.CreateAsync(new IdentityRole { Name = roleModel.RoleName });
+            if (result.Succeeded)
+            {
+                return Ok(new ResponseObjectModel<string>
+                {
+                    Success = true,
+                    StatusCode = 200,
+                    Message = $"{roleModel.RoleName} rolü başarı ile oluşturuldu.",
+                    Response = null
+                });
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError,new ResponseObjectModel<string>
+            {
+                Success = false,
+                StatusCode = 500,
+                Message = $"{roleModel.RoleName} adlı rol oluşturulurken bir hata oluştu.",
+                Response = null
             });
         }
     }
