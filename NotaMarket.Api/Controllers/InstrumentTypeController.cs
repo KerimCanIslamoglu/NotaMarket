@@ -26,6 +26,7 @@ namespace NotaMarket.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
         [Route("api/[controller]/GetInstrumentTypes")]
         public IActionResult GetInstrumentTypes()
         {
