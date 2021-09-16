@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.Api", "NotaMarket.Api\NotaMarket.Api.csproj", "{906BFE65-DE7C-409B-BDD9-583D0F8323A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.Api", "server\NotaMarket.Api\NotaMarket.Api.csproj", "{906BFE65-DE7C-409B-BDD9-583D0F8323A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.Business", "NotaMarket.Business\NotaMarket.Business.csproj", "{59B0E4F3-67A5-4F30-B867-E1FE1612DE97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.Business", "server\NotaMarket.Business\NotaMarket.Business.csproj", "{59B0E4F3-67A5-4F30-B867-E1FE1612DE97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.DataAccess", "NotaMarket.DataAccess\NotaMarket.DataAccess.csproj", "{95871EF6-D0F0-4358-A27A-73770F206FFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.DataAccess", "server\NotaMarket.DataAccess\NotaMarket.DataAccess.csproj", "{95871EF6-D0F0-4358-A27A-73770F206FFA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.Entities", "NotaMarket.Entities\NotaMarket.Entities.csproj", "{241F3366-A7D4-48A2-8D82-95F2D0E2D383}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotaMarket.Entities", "server\NotaMarket.Entities\NotaMarket.Entities.csproj", "{241F3366-A7D4-48A2-8D82-95F2D0E2D383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotaMarket.UI", "NotaMarket.UI\NotaMarket.UI.csproj", "{13503807-E163-43E2-9DF6-6F55A2B11420}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{64518EBB-C842-43F7-9C67-47B06AF7319D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{BDE7A09D-FD99-45D0-B76E-A340AF764F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,13 +37,15 @@ Global
 		{241F3366-A7D4-48A2-8D82-95F2D0E2D383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{241F3366-A7D4-48A2-8D82-95F2D0E2D383}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{241F3366-A7D4-48A2-8D82-95F2D0E2D383}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13503807-E163-43E2-9DF6-6F55A2B11420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13503807-E163-43E2-9DF6-6F55A2B11420}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13503807-E163-43E2-9DF6-6F55A2B11420}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13503807-E163-43E2-9DF6-6F55A2B11420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{906BFE65-DE7C-409B-BDD9-583D0F8323A7} = {64518EBB-C842-43F7-9C67-47B06AF7319D}
+		{59B0E4F3-67A5-4F30-B867-E1FE1612DE97} = {64518EBB-C842-43F7-9C67-47B06AF7319D}
+		{95871EF6-D0F0-4358-A27A-73770F206FFA} = {64518EBB-C842-43F7-9C67-47B06AF7319D}
+		{241F3366-A7D4-48A2-8D82-95F2D0E2D383} = {64518EBB-C842-43F7-9C67-47B06AF7319D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BE07709-1A29-4A18-B021-7343AF7860A9}
