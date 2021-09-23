@@ -5,7 +5,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/components/home.component';
 import { MusicianComponent } from './musician/components/musician.component';
 
-
 @NgModule({
     declarations: [
     
@@ -14,7 +13,7 @@ import { MusicianComponent } from './musician/components/musician.component';
   ],
     imports: [
         CommonModule,
-        HomeRoutingModule
+        HomeRoutingModule,
     ]
 })
 export class HomeModule { }
