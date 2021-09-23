@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotaMarket.Api.Model;
@@ -95,6 +96,7 @@ namespace NotaMarket.Api.Controllers
 
         [HttpPost]
         [Route("api/[controller]/CreateInstrument")]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateInstrument(CreateInstrumentModel instrumentModel)
         {
             _instrumentService.CreateInstrument(_mapper.Map<CreateInstrumentModel, Instrument>(instrumentModel));
@@ -110,6 +112,7 @@ namespace NotaMarket.Api.Controllers
 
         [HttpPut]
         [Route("api/[controller]/UpdateInstrument")]
+        [Authorize(Roles = "Admin")]
         public IActionResult UpdateInstrument(UpdateInstrumentModel updateInstrumentModel)
         {
             _instrumentService.UpdateInstrument(_mapper.Map<UpdateInstrumentModel, Instrument>(updateInstrumentModel));
@@ -125,7 +128,8 @@ namespace NotaMarket.Api.Controllers
 
         [HttpDelete]
         [Route("api/[controller]/DeleteInstrument/{id}")]
-        public IActionResult DeleteInstrumentType(int id)
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteInstrument(int id)
         {
             var instrument = _instrumentService.GetInstrumentById(id);
 

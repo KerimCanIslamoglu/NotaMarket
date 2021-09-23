@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace NotaMarket.Api.Controllers
 {
+   
     [ApiController]
     public class InstrumentTypeController : ControllerBase
     {
@@ -26,7 +28,6 @@ namespace NotaMarket.Api.Controllers
         }
 
         [HttpGet]
-        //[Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
         [Route("api/[controller]/GetInstrumentTypes")]
         public IActionResult GetInstrumentTypes()
         {
@@ -72,6 +73,7 @@ namespace NotaMarket.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("api/[controller]/CreateInstrumentType")]
         public IActionResult CreateInstrumentType(CreateInstrumentTypeModel createInstrumentTypeModel)
         {
@@ -87,6 +89,7 @@ namespace NotaMarket.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("api/[controller]/UpdateInstrumentType")]
         public IActionResult UpdateInstrumentType(UpdateInstrumentTypeModel updateInstrumentTypeModel)
         {
@@ -102,6 +105,7 @@ namespace NotaMarket.Api.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("api/[controller]/DeleteInstrumentType/{id}")]
         public IActionResult DeleteInstrumentType(int id)
         {

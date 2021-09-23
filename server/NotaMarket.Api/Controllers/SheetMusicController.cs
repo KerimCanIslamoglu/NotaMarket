@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotaMarket.Api.Model;
@@ -25,6 +26,7 @@ namespace NotaMarket.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Musician")]
         [Route("api/[controller]/CreateSheetMusic")]
         public IActionResult CreateSheetMusic(CreateSheetMusicModel createSheetMusicModel)
         {

@@ -34,8 +34,6 @@ namespace NotaMarket.Api.Controllers
         [Route("api/[controller]/Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            string activityDescription;
-            string activity = "Login";
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
@@ -62,33 +60,40 @@ namespace NotaMarket.Api.Controllers
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
 
-                activityDescription = "Kullanıcı başarıyla giriş yapabildi.";
 
-                return Ok(new
+                return Ok(new IdentityResponse
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    Success = true,
+                    Code = 200,
+                    Message = "Giriş başarılı !",
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    Expiration = token.ValidTo
                 });
             }
-            activityDescription = "Kullanıcı adı-şifre hatalı";
 
-            return Unauthorized();
+            return StatusCode(StatusCodes.Status401Unauthorized, new IdentityResponse
+            {
+                Success = false,
+                Code = 401,
+                Message = "Giriş başarısız !",
+                Token = null,
+            });
 
         }
-
         [HttpPost]
         [Route("api/[controller]/Register")]
-        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            string activityDescription;
-            string activity = "Register";
-
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
             {
-                activityDescription = "Bu kullanıcı adı daha önce kayıt olmuş";
-
-                return StatusCode(StatusCodes.Status500InternalServerError, new IdentityResponse { Status = "Error", Message = "Bu kullanıcı mevcut!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new IdentityResponse
+                {
+                    Success = false,
+                    Code = 500,
+                    Message = "Bu kullanıcı mevcut!",
+                    Token = null,
+                });
             }
 
             ApplicationUser user = new ApplicationUser()
@@ -97,14 +102,29 @@ namespace NotaMarket.Api.Controllers
                 UserName = model.Username
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+            var userRoleResult = await _userManager.AddToRoleAsync(user, UserRoles.User);
+
             if (!result.Succeeded)
             {
-                activityDescription = "Kullanıcı oluşturulurken hata oluştu!";
-
-                return StatusCode(StatusCodes.Status500InternalServerError, new IdentityResponse { Status = "Error", Message = "Kullanıcı oluşturulurken hata oluştu!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new IdentityResponse
+                {
+                    Success = false,
+                    Code = 500,
+                    Message = "Kullanıcı oluşturulurken hata oluştu!",
+                    Token = null,
+                });
             }
 
-            activityDescription = "Kullanıcı başarıyla oluşturuldu!";
+            if (!userRoleResult.Succeeded)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new IdentityResponse
+                {
+                    Success = false,
+                    Code = 500,
+                    Message = "Kullanıcı rolü oluşturulurken hata oluştu!",
+                    Token =null,
+                });
+            }
 
             var userLogin = await _userManager.FindByNameAsync(model.Username);
             if (userLogin != null && await _userManager.CheckPasswordAsync(userLogin, model.Password))
@@ -117,11 +137,11 @@ namespace NotaMarket.Api.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     };
 
-                //foreach (var userRole in userRoles)
-                //{
-                //    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                //}
-                authClaims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
+                //authClaims.Add(new Claim(ClaimTypes.Role, UserRoles.User));
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
@@ -131,20 +151,28 @@ namespace NotaMarket.Api.Controllers
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
+
                 return Ok(new IdentityResponse
                 {
-                    Status = "Success",
+                    Success =true,
+                    Code=200,
                     Message = "Kullanıcı başarıyla oluşturuldu!",
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    Expiration = token.ValidTo
                 });
             }
-            return Ok(new IdentityResponse
+
+            return StatusCode(StatusCodes.Status500InternalServerError, new IdentityResponse
             {
-                Status = "Success",
-                Message = "Kullanıcı başarıyla oluşturuldu!",
+                Success = false,
+                Code = 500,
+                Message = "Kullanıcı oluşturulurken hata oluştu!",
+                Token = null,
             });
         }
+
+
+
 
         [HttpPost]
         [Route("api/[controller]/CreateRole")]
@@ -152,7 +180,7 @@ namespace NotaMarket.Api.Controllers
         {
             var doesRoleExist = await _roleManager.FindByNameAsync(roleModel.RoleName);
 
-            if (doesRoleExist!=null)
+            if (doesRoleExist != null)
             {
                 return BadRequest(new ResponseObjectModel<string>
                 {
@@ -174,7 +202,7 @@ namespace NotaMarket.Api.Controllers
                     Response = null
                 });
             }
-            return StatusCode(StatusCodes.Status500InternalServerError,new ResponseObjectModel<string>
+            return StatusCode(StatusCodes.Status500InternalServerError, new ResponseObjectModel<string>
             {
                 Success = false,
                 StatusCode = 500,
