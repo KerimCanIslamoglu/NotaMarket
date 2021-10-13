@@ -7,7 +7,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeLayoutComponent,
     loadChildren: () =>
       import('./modules/home/home.module').then((mod) => mod.HomeModule),

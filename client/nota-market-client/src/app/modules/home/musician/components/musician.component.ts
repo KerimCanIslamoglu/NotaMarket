@@ -15,7 +15,7 @@ export class MusicianComponent implements OnInit {
   ) {
     this.musicianService.getMusicianList().subscribe((data) => {
       this.musicians = data;
-      this.router.navigate(['/home', {}]);
+      // this.router.navigate(['/home', {}]);
     });
   }
 
