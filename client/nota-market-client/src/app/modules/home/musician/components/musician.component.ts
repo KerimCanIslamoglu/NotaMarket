@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MusicianService } from './musician.service';
 
 @Component({
   selector: 'app-musician',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./musician.component.css']
 })
 export class MusicianComponent implements OnInit {
-
-  constructor() { }
+  musicians: any[];
+  constructor(private musicianService: MusicianService) {
+     this.musicianService.getMusicianList().subscribe(data => {
+       this.musicians = data
+     });
+   }
 
   ngOnInit(): void {
   }
