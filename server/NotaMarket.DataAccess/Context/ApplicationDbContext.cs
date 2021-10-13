@@ -15,8 +15,8 @@ namespace NotaMarket.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-DMGK25P;Database=NotaMarketDb;Trusted_Connection=True;");
-            optionsBuilder.UseSqlServer(@"Server=MSI\MSSQLSERVER14;Database=NotaMarketDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-DMGK25P;Database=NotaMarketDb;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=MSI\MSSQLSERVER14;Database=NotaMarketDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
