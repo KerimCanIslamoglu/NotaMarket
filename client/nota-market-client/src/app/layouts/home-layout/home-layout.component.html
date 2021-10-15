@@ -1,38 +1,50 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Nota Market</a>
+            <a class="navbar-brand" routerLink="/home">Nota Market</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse" id="navbar Collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+                        <a class="nav-link" aria-current="page" routerLink="/home"
+                            routerLinkActive="active">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Notalar</a>
+                        <a class="nav-link " aria-current="page" routerLink="/sheet-musics"
+                            routerLinkActive="active">Notalar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Müzisyenler</a>
+                        <a class="nav-link " aria-current="page" routerLink="/musician"
+                            routerLinkActive="active">Müzisyenler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" routerLink="/admin/dashboard"
+                            routerLinkActive="active">Admin</a>
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Arama" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Arama</button>
+                    <input class="form-control me-2" type="search" placeholder="En az 3 karakter yazınız.."
+                        aria-label="Search">
+                    <button class="btn btn-outline-info" type="submit">Ara</button>
                 </form>
             </div>
         </div>
     </nav>
 </header>
 
-  <router-outlet>
+<div>
+    <router-outlet>
 
     </router-outlet>
+</div>
+
+
 
 <main>
-  
+
 
 
 
