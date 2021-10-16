@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-instrument-type-list.component.css'],
 })
 export class AdminInstrumentTypeListComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }
