@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/components/dashboard.component';
 import { AdminMusicianListComponent } from './admin-musician-list/components/admin-musician-list.component';
 import { AdminSheetMusicListComponent } from './admin-sheet-music-list/components/admin-sheet-music-list.component';
-import { AdminInstrumentListComponent } from './admin-instrument-list/components/admin-instrument-list.component';
-import { AdminIntrumentTypeListComponent } from './admin-intrument-type-list/components/admin-intrument-type-list.component';
+import { AdminInstrumentTypeListComponent } from './admin-instrument-type-list/components/admin-instrument-type-list/admin-instrument-type-list.component';
+import { AdminCreateInstrumentTypeComponent } from './admin-instrument-type-list/components/admin-create-instrument-type/admin-create-instrument-type.component';
+import { AdminInstrumentListComponent } from './admin-instrument-list/components/admin-instrument-list/admin-instrument-list.component';
+import { AdminCreateInstrumentComponent } from './admin-instrument-list/components/admin-create-instrument/admin-create-instrument.component';
 
 const routes: Routes = [
   {
@@ -24,8 +26,16 @@ const routes: Routes = [
     component: AdminInstrumentListComponent,
   },
   {
+    path: 'create-instrument',
+    component: AdminCreateInstrumentComponent,
+  },
+  {
     path: 'instrument-type-list',
-    component: AdminIntrumentTypeListComponent,
+    component: AdminInstrumentTypeListComponent,
+  },
+  {
+    path: 'create-instrument-type',
+    component: AdminCreateInstrumentTypeComponent,
   },
 ];
 
